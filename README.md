@@ -1,7 +1,5 @@
 # 实现一个简单的版本控制工具
 
----
-
 ## 任务1 实现 key-value 存储
 
 - 最简单的 key-value 存储方式（filename ---> content of file）
