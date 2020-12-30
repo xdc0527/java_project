@@ -1,6 +1,6 @@
-# 实现一个简单的版本控制工具
+# JAVA 项目：实现一个简单的版本控制工具
 
-## 任务1 实现 key-value 存储
+## 1. 任务1 实现 key-value 存储
 
 - 最简单的 key-value 存储方式（filename ---> content of file）
   - key 作为文件名，文件内容作为 value
@@ -17,7 +17,7 @@
 
 - 单元测试
 
-## 任务2 将一个文件夹转化成 key, value
+## 2. 任务2 将一个文件夹转化成 key, value
 
 - 给定一个文件夹目录，将其转化成若干 tree 和 blob
   - 深度优先遍历此目录
@@ -28,9 +28,18 @@
 
 - 单元测试
 
-## 开发方式
+## 3. 任务3 实现 commit
+
+- 给定一个工作区目录，生成对应的 blob 和 tree (任务2已完成)以及 commit
+  - 需要存储指向当前最新 commit 的 HEAD 指针
+  - 每次新生成一个 commit 前，需要把根目录的 tree key 与已有的最新 commit 的 tree key 进行比较，发现不相同时（即文件发生了变动）才添加这个 commit
+  - commit 创建完成后，更新 HEAD 指针至最新 commit
+
+
+## 4. 开发方式
 
 - 永远使用 Pull Request 来更新主分支
 - commit 描述和 PR 描述尽可能详细
 - 使用 issue 来讨论/记录开发计划、分工以及问题/ bug
 - 每个 issue 和 PR 都 @ 助教
+- 最终小组内每位同学都需要贡献至少 3 次 commit，可以是完善注释、设计文档和单元测试（使用代码来自动化实现测试用例的生成以及验证测试结果是否正确）
