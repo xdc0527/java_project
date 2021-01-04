@@ -1,6 +1,6 @@
 # Git原理学习总结
 
-## git中的objects
+## 一、git中的objects
 
 git有3种objects：blob、tree、commit
 
@@ -10,7 +10,7 @@ git cat-file -s object名字的前几位  # 查看object内容的大小（字符
 git cat-file -p object名字的前几位  # 查看object内容
 ```
 
-## git add时发生的变化
+## 二、git add时发生的变化
 
 1. 在.git/objects目录下生成blob对象
 2. 在.git目录下生成（或更新）index文件
@@ -41,7 +41,7 @@ git ls-files -s  # 查看暂存区和版本库中的文件名和对应blob的名
 
 当工作区中的文件为modified状态时，使用 `git add` 命令，会生成新的blob对象，旧的blob对象还是存在的，但更新了index文件，在index文件中，该文件名将与新的blob名字对应。
 
-## git commit时发生的变化
+## 三、git commit时发生的变化
 
 1. 在.git/objects目录下生成1个commit对象
 2. 在.git/objects目录下生成1个或多个tree对象（如果有文件夹的话会生成多个tree对象）
@@ -58,7 +58,7 @@ tree对象中包含：1个或多个blob名字、对应的文件名/1个或多个
 
 commit对象中包含：parent commit名字、1个tree名字、作者、提交说明等信息
 
-## 版本切换
+## 四、版本切换
 
 版本切换就是将工作区还原到某个版本（commit）
 
@@ -66,7 +66,7 @@ commit对象中包含：parent commit名字、1个tree名字、作者、提交�
 git reset --hard commit名字/HEAD~n  # n代表回退几个版本
 ```
 
-## 分支
+## 五、分支
 
 ### HEAD指针
 
@@ -91,7 +91,7 @@ git branch -D dev  # 强制删除dev分支
 # 这2种操作只会删除dev指针，objects还是存在的
 ```
 
-## 一些常用命令
+## 六、一些常用命令
 
 查看commit记录
 
