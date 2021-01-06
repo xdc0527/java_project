@@ -11,10 +11,12 @@ public class Blob extends KeyValueStorage{
 		return "100644 blob " + key;
 	}
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		File f = new File("C:/Users/lenovo/Desktop/rw/java/MyGit/a.txt");
 		Blob b = new Blob(f);
+		b.write();
 		System.out.println(b);
+		System.out.println();
 	}
 
 }
