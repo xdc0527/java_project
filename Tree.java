@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.PrintWriter;
+
 public class Tree extends KeyValueStorage{
 	public Tree(File f) throws Exception{
 		this.type = "Tree";
@@ -11,6 +13,16 @@ public class Tree extends KeyValueStorage{
 			}
 		}
 		genKey(value);
+		this.file = file;
+	}
+
+	@Override
+	public void write() throws Exception{
+		//File f = new File(file);
+		//if(!f.exists())f.mkdirs();
+		PrintWriter p = new PrintWriter(this.key);
+		p.print(this.value);
+		p.close();
 	}
 
 	@Override
@@ -22,5 +34,6 @@ public class Tree extends KeyValueStorage{
 		File f = new File("C:/Users/lenovo/Desktop/rw/java/MyGit");
 		Tree t = new Tree(f);
 		System.out.println(t);
+		t.write();
 	}
 }
