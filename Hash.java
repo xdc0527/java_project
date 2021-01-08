@@ -8,7 +8,6 @@ public class Hash{
 	/**
 	 * @param bytes 因为value我们统一采取了二进制byte[]类型，因此这里输入的参数类型是byte[]
 	 * @return return的是String，可以直接用来作为key即文件名
-	 *
 	 */
 	public static String getSHA1(byte[] bytes) throws IOException, NoSuchAlgorithmException {
 		byte[] buffer = new byte[1024]; 
@@ -28,8 +27,7 @@ public class Hash{
 		for(byte eachByte:bytes){
 			if(Integer.toHexString(eachByte).length() == 1){
 				result += "0" + Integer.toHexString(eachByte);
-			}
-			else result += Integer.toHexString(eachByte);
+			} else result += Integer.toHexString(eachByte);
 		}
 		return result;
 	}
