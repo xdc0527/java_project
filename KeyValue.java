@@ -19,14 +19,14 @@ public class KeyValue {
 
     // 下面两个不重要，不需要仔细看。
     // 这个方法可以看看gitFolder里有没有文件名是key的文件，它主要是为了辅助实现下面的getFile方法。
-    private static boolean checkIfKeyExists(String key){
+    public static boolean checkIfKeyExists(String key){
         return new File(gitFolder,key).exists();
     }
 
     // 如果key文件存在，就在gitFolder中找到它，return这个文件的File。这个方法是用来辅助实现下面的getValue方法。
     private static File getFileInGitFolder(String key) throws Exception {
         if(checkIfKeyExists(key)) return new File(gitFolder,key);
-        else throw new Exception("No such key found");
+        else throw new FileNotFoundException("No such key found");
     }
 
     // 下面这个是比较重要的，其他class会调用这个方法。
@@ -53,6 +53,15 @@ public class KeyValue {
             outputStream.close();
         }
     }
+
+    public void setKVfileHard() throws IOException {
+        if(checkIfKeyExists()){
+            KVfile.delete();
+        }
+        setKVfile();
+    }
+
+
     // 在上面的setKVfile方法中用到，看看该instance的key在gitfolder中是不是已经有了，有了就没必要再添加一个一样的了。
     public boolean checkIfKeyExists(){
         return KVfile.exists();

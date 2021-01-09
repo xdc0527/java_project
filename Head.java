@@ -1,26 +1,41 @@
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 
 public class Head extends KeyValue{
 
     public final String key = "HEAD";
-    public String NewCommitKey;
 
-
-    public Head(String NewcommitKey) throws Exception {
-        this.NewCommitKey = NewcommitKey;
-        updateHead();
-    }
-
-    private void updateHead() throws Exception {
-        String oldHEADvalue = new String(getValue("HEAD"), StandardCharsets.UTF_8);
-        if(oldHEADvalue.substring(0,8) == "DETACHED"){
-            updateDetachedHead();
+    public static String getCommitKey() throws Exception {
+        String HEADvalue = new String(getValue("HEAD"));
+        if(HEADvalue.startsWith("C")){
+            return HEADvalue.substring(8);
         }else{
-            updateBranch();
+            return Branch.getCommitKey(HEADvalue);
         }
     }
 
-    public void UpdateDetachedHead(){
-
+    public Head(String StringValue) throws IOException {
+        this.value = StringValue.getBytes();
+        setKVfileHard();
     }
+
+    public static void checkoutBranch(String branchKey) throws Exception {
+        new Head(branchKey);
+        Checkout.check(Branch.getCommitKey(branchKey));
+    }
+
+    public static void checkoutCommit(String commitKey) throws Exception {
+        new Head(commitKey);
+        Checkout.check(commitKey);
+    }
+
+    public static void update(String newCommitKey) throws Exception {
+        String oldHeadValue = new String(getValue("HEAD"));
+        if(oldHeadValue.startsWith("C")){
+            new Head(newCommitKey);
+        }else{
+            new Branch(oldHeadValue.substring(1), newCommitKey);
+        }
+    }
+
+
 }
