@@ -19,7 +19,7 @@ public class KeyValue {
 
     // 下面两个不重要，不需要仔细看。
     // 这个方法可以看看gitFolder里有没有文件名是key的文件，它主要是为了辅助实现下面的getFile方法。
-    private static boolean checkIfKeyExists(String key){
+    public static boolean checkIfKeyExists(String key){
         return new File(gitFolder,key).exists();
     }
 
