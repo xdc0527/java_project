@@ -5,10 +5,7 @@ public class Branch extends KeyValue {
     public Branch(String branchName, String CommitKey) throws IOException {
         value = CommitKey.getBytes();
         key = "R" + branchName;
-        if(checkIfKeyExists()){
-            KVfile.delete();
-        }
-        setKVfile();
+        setKVfileHard();
     }
 
     public static String getCommitKey(String branchName) throws Exception {

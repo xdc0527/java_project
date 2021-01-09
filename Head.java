@@ -5,13 +5,6 @@ public class Head extends KeyValue{
     public final String key = "HEAD";
     public String newCommitKey;
 
-
-    public Head(String newCommitKey) throws Exception {
-        this.newCommitKey = newCommitKey;
-        update();
-    }
-
-
     public static String getCommitKey() throws Exception {
         String HEADvalue = new String(getValue("HEAD"));
         if(HEADvalue.startsWith("DETACHED")){
@@ -21,19 +14,21 @@ public class Head extends KeyValue{
         }
     }
 
+    public Head(String newCommitKey) throws Exception {
+        this.newCommitKey = newCommitKey;
+        update();
+    }
+
     private void update() throws Exception {
         String oldHeadValue = new String(getValue("HEAD"));
         if(oldHeadValue.startsWith("DETACHED")){
-            updateDetachedHead();
+            newDetachedHead();
         }else{
             new Branch(oldHeadValue,newCommitKey);
         }
     }
 
-    public void updateDetachedHead() throws IOException {
-        if(checkIfKeyExists()){
-            KVfile.delete();
-        }
+    private void newDetachedHead() throws IOException {
         value = ("DETACHED"+newCommitKey).getBytes();
         setKVfile();
     }
