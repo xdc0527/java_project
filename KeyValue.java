@@ -26,7 +26,7 @@ public class KeyValue {
     // 如果key文件存在，就在gitFolder中找到它，return这个文件的File。这个方法是用来辅助实现下面的getValue方法。
     private static File getFileInGitFolder(String key) throws Exception {
         if(checkIfKeyExists(key)) return new File(gitFolder,key);
-        else throw new Exception("No such key found");
+        else throw new FileNotFoundException("No such key found");
     }
 
     // 下面这个是比较重要的，其他class会调用这个方法。
@@ -46,14 +46,19 @@ public class KeyValue {
 
     // 有了value和key就可以在gitFolder生成一个对应的文件。
     // 这个方法就是用来生成gitFolder中的文件的。
-    // Hard意味着不检查Gitfolder中是不是已经存在该keyValue文件
-    // 下面的setKVfile方法与之相比，多了一步检查的工作
     public void setKVfile() throws IOException {
         if(!checkIfKeyExists()){
             FileOutputStream outputStream = new FileOutputStream(KVfile);
             outputStream.write(value);
             outputStream.close();
         }
+    }
+
+    public void setKVfileHard() throws IOException {
+        if(checkIfKeyExists()){
+            KVfile.delete();
+        }
+        setKVfile();
     }
 
 
