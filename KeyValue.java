@@ -46,6 +46,8 @@ public class KeyValue {
 
     // 有了value和key就可以在gitFolder生成一个对应的文件。
     // 这个方法就是用来生成gitFolder中的文件的。
+    // Hard意味着不检查Gitfolder中是不是已经存在该keyValue文件
+    // 下面的setKVfile方法与之相比，多了一步检查的工作
     public void setKVfile() throws IOException {
         if(!checkIfKeyExists()){
             FileOutputStream outputStream = new FileOutputStream(KVfile);
@@ -53,6 +55,8 @@ public class KeyValue {
             outputStream.close();
         }
     }
+
+
     // 在上面的setKVfile方法中用到，看看该instance的key在gitfolder中是不是已经有了，有了就没必要再添加一个一样的了。
     public boolean checkIfKeyExists(){
         return KVfile.exists();
