@@ -32,11 +32,11 @@ public static String byteArrayToHexString(byte[] bytes)
 - 数据域
 
 ```
-public static File path = Command.path
+public static File path
 根目录的路径
 
-public static File gitFolder = new File(path,"gitFolder")
-Git的暂存区和版本库所在目录，相当于.git文件夹
+public static File gitFolder
+Git版本库所在目录，相当于.git文件夹
 
 public String key
 Git对象（Blob、Tree、Commit）的Key，即根据Value计算得到的SHA1值
@@ -53,6 +53,11 @@ Git对象（Blob、Tree、Commit）在gitFolder中的文件路径
 - 方法
 
 ```
+public static void setPath(String pathString)
+功能：设置工作区路径
+参数：字符串类型的目录路径
+返回值：无
+
 public static boolean checkIfKeyExists(String key)
 功能：判断gitFolder中是否存在文件名为Key的文件
 参数：Key（SHA1字符串）
