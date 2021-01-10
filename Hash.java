@@ -26,8 +26,8 @@ public class Hash{
 		// 所以如果数字小于16，要在前面补一个0
 		for(byte eachByte:bytes){
 			if(Integer.toHexString(eachByte).length() == 1){
-				result += "0" + Integer.toHexString(eachByte);
-			} else result += Integer.toHexString(eachByte);
+				result += "0" + Integer.toString(eachByte & 0xFF, 16);
+			} else result += Integer.toString(eachByte & 0xFF, 16);
 		}
 		return result;
 	}
