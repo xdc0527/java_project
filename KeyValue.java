@@ -7,15 +7,20 @@ import java.security.NoSuchAlgorithmException;
 public class KeyValue {
 
     // path是根目录的路径，由Command class提供。Command运行时会要求用户输入path。
-    public static File path = Command.path;
+    public static File path;
     // gitFolder相当于.git文件夹，用来存储所有的备份。
-    public static File gitFolder = new File(path,"gitFolder");
+    public static File gitFolder;
 
     //不论是Blob，Tree，还是Commit，都有Key和Value。Key是根据Value产生的。注意Value我们采取了byte[]类型。
     public String key;
     public byte[] value;
     // KVfile就是该Blob或Tree或Commit在gitFolder中的文件地址，也就是gitFolder文件夹中文件名为key的文件。
-    public File KVfile;
+    public File KVfile ;
+
+    public static void setPath(String pathString){
+        path = new File(pathString);
+        gitFolder = new File(path, "gitFolder");
+    }
 
     // 下面两个不重要，不需要仔细看。
     // 这个方法可以看看gitFolder里有没有文件名是key的文件，它主要是为了辅助实现下面的getFile方法。
@@ -64,6 +69,7 @@ public class KeyValue {
 
     // 在上面的setKVfile方法中用到，看看该instance的key在gitfolder中是不是已经有了，有了就没必要再添加一个一样的了。
     public boolean checkIfKeyExists(){
+        KVfile = new File(gitFolder,key);
         return KVfile.exists();
     }
 }
