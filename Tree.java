@@ -19,7 +19,7 @@ public class Tree extends KeyValue{
 				// 子文件生成Blob对象后，会生成一个key
 				// Tree对象的value包含子文件的key和文件名
 				result += blob.key + "/n" + f.getName() + "/n";
-			} else{
+			}else{
 				// 如果是子文件夹，就生成一个Tree对象
 				Tree tree = new Tree(f);
 				// 子文件夹生成Tree对象后，会生成一个key
