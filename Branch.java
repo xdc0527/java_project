@@ -9,6 +9,6 @@ public class Branch extends KeyValue {
     }
 
     public static String getCommitKey(String branchName) throws Exception {
-        return new String(getValue(branchName));
+        return getStringValue(branchName);
     }
 }

@@ -20,12 +20,12 @@ public class Head extends KeyValue{
 
     public static void checkoutBranch(String branchKey) throws Exception {
         new Head(branchKey);
-        Checkout.check(Branch.getCommitKey(branchKey));
+        Checkout.checkCommit(Branch.getCommitKey(branchKey));
     }
 
     public static void checkoutCommit(String commitKey) throws Exception {
         new Head(commitKey);
-        Checkout.check(commitKey);
+        Checkout.checkCommit(commitKey);
     }
 
     public static void update(String newCommitKey) throws Exception {

@@ -1,4 +1,3 @@
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,6 +27,7 @@ public class Hash{
 			if(Integer.toHexString(eachByte).length() == 1){
 				result += "0" + Integer.toString(eachByte & 0xFF, 16);
 			} else result += Integer.toString(eachByte & 0xFF, 16);
+
 		}
 		return result;
 	}
