@@ -12,8 +12,8 @@ public class Command {
     public void init(){
         Scanner scanner = new Scanner(System.in);
         // 先索要path和author（写在config里）
-        askPath();
-        askAuthor();
+        // askPath();
+        // askAuthor();
         // 然后创建Head和main branch
         // 然后根据用户输入的单词，执行任务
     }

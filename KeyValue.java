@@ -17,9 +17,10 @@ public class KeyValue {
     // KVfile就是该Blob或Tree或Commit在gitFolder中的文件地址，也就是gitFolder文件夹中文件名为key的文件。
     public File KVfile ;
 
-    public static void setPath(String pathString){
-        path = new File(pathString);
+    public static void setPath(){
+        path = Command.path;
         gitFolder = new File(path, "gitFolder");
+        gitFolder.mkdir();
     }
 
     // 下面两个不重要，不需要仔细看。
@@ -39,6 +40,10 @@ public class KeyValue {
     public static byte[] getValue(String key) throws Exception {
         FileInputStream inputStream = new FileInputStream(getFileInGitFolder(key));
         return inputStream.readAllBytes();
+    }
+
+    public static String getStringValue(String key) throws Exception{
+        return new String(getValue(key));
     }
 
 
